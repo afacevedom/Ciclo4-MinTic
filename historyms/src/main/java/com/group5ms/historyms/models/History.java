@@ -4,18 +4,28 @@ import java.util.Date;
 
 public class History {
     @Id
+    private String id;
     private String username;
-    private Integer cc;
+    private String cc;
     private String title;
     private String text;
     private Date creationDate;
 
-    public History(String username, Integer cc, String title, String text, Date creationDate){
+    public History(String id, String username, String cc, String title, String text, Date creationDate){
+        this.id = id;
         this.username = username;
         this.cc = cc;
         this.title = title;
         this.text = text;
         this.creationDate = creationDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -26,11 +36,11 @@ public class History {
         this.username = username;
     }
 
-    public Integer getCc() {
+    public String getCc() {
         return cc;
     }
 
-    public void setCc(Integer cc) {
+    public void setCc(String cc) {
         this.cc = cc;
     }
 
