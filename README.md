@@ -7,4 +7,4 @@
 <p>Microservicio hecho en SpringBoot, el cual tiene como función crear historia medica de los usuarios</p>
 
 <h1> APIGateway </h1>
-<p> En construcción... 🔨 </p>
+<p> Microservicio con graphql y apollo server </p>
