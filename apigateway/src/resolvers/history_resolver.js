@@ -5,8 +5,11 @@ const historyResolver = {
         },
     },
     Mutation:{
-        createHistory: (_, {history}, {dataSources}) => {
-            return dataSources.historyAPI.createHistory(history);
+        createHistory: (_, {history}, {dataSources, userIdToken}) => {
+            if (userIdToken == 3)
+                return dataSources.historyAPI.createHistory(history);
+            else
+                return null;
         }
     }
 };

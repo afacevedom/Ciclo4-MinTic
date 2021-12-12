@@ -9,6 +9,11 @@ const authTypeDefs = gql `
     type Access {
         access: String!
     }
+    
+    type userId {
+        UserId: Int!
+    }
+    
 
     input CredentialsInput {
         username: String!
@@ -18,6 +23,7 @@ const authTypeDefs = gql `
     input SignUpInput {
         username: String!
         password: String!
+        fullname: String!
         email: String!
         edad: Int!
         cc: String!
@@ -28,6 +34,7 @@ const authTypeDefs = gql `
     type UserDetail {
         id: Int!
         username: String!
+        fullname: String!
         Mail: String!
         Edad: Int!
         DocIdentidad: String!
@@ -38,7 +45,8 @@ const authTypeDefs = gql `
     type Mutation{
         signUpUser(userInput: SignUpInput!): Tokens!
         logIn(credentials: CredentialsInput!): Tokens
-        refreshToken(token: String!):Access!
+        refreshToken(refresh: String!): Access!
+        verifyToken(token: String!): userId!
     }
 
     type Query{

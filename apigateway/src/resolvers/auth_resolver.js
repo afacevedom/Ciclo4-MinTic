@@ -1,9 +1,15 @@
 const usersResolver = {
     Query: {
-        userDetailById: (_, {userId}, { dataSources}) => {
-            return dataSources.authAPI.getUser(userId)
-        }, userAll: (_, __, {dataSources}) => {
-            return dataSources.authAPI.userAll();
+        userDetailById: (_, {userId}, { dataSources, userIdToken}) => {
+            if (userId == userIdToken || userIdToken == 3)
+                return dataSources.authAPI.getUser(userId)
+            else
+                return null
+        }, userAll: (_, __, {dataSources, userIdToken}) => {
+            if (userIdToken == 3)
+                return dataSources.authAPI.userAll();
+            else
+                return null;
         }
     },
     Mutation: {
@@ -20,6 +26,9 @@ const usersResolver = {
         },
         logIn: async (_, {credentials}, {dataSources}) =>{
             return await dataSources.authAPI.authRequest(credentials);
+        },
+        refreshToken: async (_, {refresh}, {dataSources}) => {
+            return await dataSources.authAPI.refreshToken(refresh);
         }
     }
 };

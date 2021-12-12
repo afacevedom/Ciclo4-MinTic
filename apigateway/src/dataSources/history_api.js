@@ -9,9 +9,7 @@ class HistoryAPI extends RESTDataSource {
     }
 
     async createHistory(history) {
-        console.log(history);
         history = new Object(JSON.parse(JSON.stringify(history)));
-        console.log(history);
         return await this.post(`/history`, history);
     }
 
