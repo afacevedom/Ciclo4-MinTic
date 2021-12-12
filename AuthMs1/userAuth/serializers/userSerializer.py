@@ -5,7 +5,7 @@ from userAuth.models.user import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','password','email','edad','cc','tel','root']
+        fields = ['id','username','fullname','password','email','edad','cc','tel','root']
 
     def create(self, validated_data):
         userInstance = User.objects.create(**validated_data)
@@ -16,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         return {
             'id': user.id,
             'username': user.username,
+            'fullname': user.fullname,
             'Mail': user.email,
             'Edad': user.edad,
             'DocIdentidad': user.cc,
