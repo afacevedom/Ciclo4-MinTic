@@ -5,13 +5,13 @@
   <div class="personal">
   <div class="accordion" id="accordionExample">
     <h4 class="text-center text-black"><strong>Mis historias</strong></h4>
-    <div v-for="history in historyByData" v-bind:key="history.id" class="accordion-item">
+    <div v-for="(history, index) in historyByData" v-bind:key="history.id" class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${index}`" aria-expanded="true" aria-controls="collapseOne">
           {{history.creationDate.substring(0, 10)}} {{history.title}}
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div :id="`collapse${index}`" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <strong>Nombre:</strong> {{userDetailById.fullname}}
           <br>
