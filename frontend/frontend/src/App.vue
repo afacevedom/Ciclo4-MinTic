@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar fixed-top navbar-dark bg-primary">
+    <nav class="navbar navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="https://www.svgrepo.com/show/206475/computer-healthcare-and-medical.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
@@ -29,11 +29,14 @@
 </template>
 
 <script>
+import jwt_decode from "jwt-decode";
+
 export default {
   name: "App",
 
   data: function (){
     return {
+      userId: 0,
       user: localStorage.getItem('username') || "none",
       is_auth: false
     }
@@ -44,7 +47,11 @@ export default {
       this.is_auth = localStorage.getItem("isAuth") || false;
       this.user = localStorage.getItem('username') || false;
       if (this.is_auth == false){
-        this.$router.push({name: "logIn"})
+        this.$router.push({name: "logIn"});
+      }else if(this.userId == 3){
+        this.$router.push({name: "doctorView"});
+      }else if (this.userId != 3){
+        this.$router.push({name: "userView"});
       }
     },
     completedLogIn: function (data) {
@@ -52,6 +59,8 @@ export default {
       localStorage.setItem('username', data.username);
       localStorage.setItem('token_access', data.token_acess);
       localStorage.setItem('token_refresh', data.token_refresh);
+      this.userId = jwt_decode(localStorage.getItem("token_refresh")).user_id;
+      console.log(this.userId);
       alert('Autenticación exitosa!');
       this.verifyAuth();
     },
