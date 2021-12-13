@@ -83,12 +83,12 @@ export default {
           userInput: this.user
         },
       }).then((result) => {
-        let dataLogIn = {
+        let dataSignUp = {
           username: this.username,
-          token_acess: result.data.signUpUser.access,
+          token_access: result.data.signUpUser.access,
           token_refresh: result.data.signUpUser.refresh
         }
-        console.log(dataLogIn);
+        this.$emit('completedSignUp', dataSignUp);
       }).catch((error) => {
         alert("Error en el registro.")
       })
