@@ -53,6 +53,7 @@ export default {
           token_access: result.data.logIn.access,
           token_refresh: result.data.logIn.refresh
         };
+        console.log(dataLogIn);
         this.$emit('completedLogIn', dataLogIn)
       })
       .catch((error) => {

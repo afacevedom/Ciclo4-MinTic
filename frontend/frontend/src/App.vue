@@ -57,7 +57,7 @@ export default {
     completedLogIn: function (data) {
       localStorage.setItem('isAuth', true);
       localStorage.setItem('username', data.username);
-      localStorage.setItem('token_access', data.token_acess);
+      localStorage.setItem('token_access', data.token_access);
       localStorage.setItem('token_refresh', data.token_refresh);
       this.userId = jwt_decode(localStorage.getItem("token_refresh")).user_id;
       console.log(this.userId);
